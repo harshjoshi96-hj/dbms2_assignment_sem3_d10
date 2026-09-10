@@ -3,6 +3,7 @@
 -- Question: P1.23 Debug Challenge - Fix the Broken Block
 
 SET SERVEROUTPUT ON;
+ACCEPT roll_no NUMBER PROMPT 'Enter your roll number: '
 
 DECLARE
     -- Bug 1: Assignment in PL/SQL uses :=, not =.
@@ -12,7 +13,8 @@ DECLARE
     -- Bug 3: A CONSTANT must be initialized at declaration.
     c_bonus_rate CONSTANT NUMBER := 0.1;
 
-    v_sal    NUMBER := 25000;
+    -- Seed: salary = roll_no * 1000 + 20000.
+    v_sal    NUMBER := &roll_no * 1000 + 20000;
     v_bonus  NUMBER;
     v_fname  employees.first_name%TYPE;
 BEGIN
@@ -36,4 +38,3 @@ END;
 /
 
 -- All five bugs from the question have been corrected and documented above.
--- To follow the seed exactly, replace v_sal with: roll_no * 1000 + 20000.
